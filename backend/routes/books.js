@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getBooks } = require('../controllers/bookController');
+const { getBooks , addBook } = require('../controllers/bookController');
 
 router.get('/', getBooks);
 router.post("/", addBook);
