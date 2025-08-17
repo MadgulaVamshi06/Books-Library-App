@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const auth = require("../middleware/auth");
+const isProduction = process.env.NODE_ENV === "production";
 
 // ✅ Register
 router.post("/register", async (req, res) => {
@@ -41,8 +42,9 @@ router.post("/login", async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "lax",
-      secure: false, // set true if using https
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      sameSite: isProduction ? "none" : "lax", // must be 'none' in production
+      secure: isProduction,
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
