@@ -10,6 +10,8 @@ const myBooksRoutes = require('./routes/mybooks');
 
 const app = express();
 connectDB();
+console.log("SERVER STARTING - CLIENT_URL:", process.env.CLIENT_URL);
+
 
 app.use(express.json());
 app.use(cookieParser()); 
