@@ -9,14 +9,13 @@ const booksRoutes = require('./routes/books');
 const myBooksRoutes = require('./routes/mybooks');
 
 const app = express();
-
 connectDB();
 
 app.use(express.json());
-app.use(cookieParser());
+app.use(cookieParser()); 
 app.use(cors({
-  origin: process.env.CLIENT_URL,
-  credentials: true
+  origin: process.env.CLIENT_URL,  
+  credentials: true,
 }));
 
 app.use('/api/auth', authRoutes);
